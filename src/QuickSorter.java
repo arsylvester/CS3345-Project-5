@@ -61,14 +61,14 @@ public class QuickSorter
     		int j = right - 1;
     		while(true)
     		{
-    			while(list.get(++i).compareTo(pivot) < 0) {} //Just iterate till found greater element.
-    			while(list.get(--j).compareTo(pivot) > 0) {} //Just iterate till found lesser element.
+    			while(list.get(i).compareTo(pivot) < 0) {i++;} //Just iterate till found greater element.
+    			while(list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
     			if( i < j)
     				swapElements(list, i, j);
     			else
     				break;
     		}
-    			swapElements(list, i, right - 1 );   // Restore pivot
+    			swapElements(list, i, right);   // Restore pivot
     			
     			firstElementQuickSort(list, left, i - 1);
     			firstElementQuickSort(list, i + 1, right);
@@ -85,23 +85,23 @@ public class QuickSorter
     		Random random = new Random();
     		// Place pivot at position right - 1
             swapElements( list, random.nextInt(right - left + 1) + left, right - 1 );
-    		E pivot = list.get(right - 1);
+    		E pivot = list.get(right);
     		
     		int i = left;
     		int j = right - 1;
     		while(true)
     		{
-    			while(list.get(++i).compareTo(pivot) < 0) {} //Just iterate till found greater element.
-    			while(list.get(--j).compareTo(pivot) > 0) {} //Just iterate till found lesser element.
+    			while(list.get(i).compareTo(pivot) < 0) {i++;} //Just iterate till found greater element.
+    			while(list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
     			if( i < j)
     				swapElements(list, i, j);
     			else
     				break;
     		}
-    			swapElements(list, i, right - 1 );   // Restore pivot
+    			swapElements(list, i, right);   // Restore pivot
     			
-    			firstElementQuickSort(list, left, i - 1);
-    			firstElementQuickSort(list, i + 1, right);
+    			randomElementQuickSort(list, left, i - 1);
+    			randomElementQuickSort(list, i + 1, right);
     	}
     	else
     		insertionSort(list, left, right);
@@ -118,17 +118,17 @@ public class QuickSorter
     		int j = right - 1;
     		while(true)
     		{
-    			while(list.get(++i).compareTo(pivot) < 0) {} //Just iterate till found greater element.
-    			while(list.get(--j).compareTo(pivot) > 0) {} //Just iterate till found lesser element.
+    			while(list.get(i).compareTo(pivot) < 0) {i++;} //Just iterate till found greater element.
+    			while(list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
     			if( i < j)
     				swapElements(list, i, j);
     			else
     				break;
     		}
-    			swapElements(list, i, right - 1 );   // Restore pivot
+    			swapElements(list, i, right);   // Restore pivot
     			
-    			firstElementQuickSort(list, left, i - 1);
-    			firstElementQuickSort(list, i + 1, right);
+    			randomMedianQuickSort(list, left, i - 1);
+    			randomMedianQuickSort(list, i + 1, right);
     	}
     	else
     		insertionSort(list, left, right);
@@ -148,9 +148,8 @@ public class QuickSorter
         if( list.get(z).compareTo(list.get(y) ) < 0 )
         	swapElements( list, y, z );
 
-        // Place pivot at position right - 1
-        swapElements( list, y, right - 1 );
-        return list.get(right - 1);
+        swapElements( list, y, right);
+        return list.get(right);
     }
     
     private static <E extends Comparable<E>> void medianQuickSort(ArrayList<E> list, int left, int right)
@@ -173,8 +172,8 @@ public class QuickSorter
     		}
     			swapElements(list, i, right - 1 );   // Restore pivot
     			
-    			firstElementQuickSort(list, left, i - 1);
-    			firstElementQuickSort(list, i + 1, right);
+    			medianQuickSort(list, left, i - 1);
+    			medianQuickSort(list, i + 1, right);
     	}
     	else
     		insertionSort(list, left, right);
