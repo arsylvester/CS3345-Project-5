@@ -5,7 +5,7 @@ public class Main
 	public static void main(String[] args) 
 	{
 		Integer[] test = {-40, -12, -25, -1, 29, -26, 3, -7, -17, 36, -41, 8, 1, -17, 12, -24, -17, -10, -48, 33, 10, 6, -3, -26, -27, 1, 14, -13, 7, -33};
-		ArrayList<Integer> initialList = QuickSorter.generateRandomList(30);
+		ArrayList<Integer> initialList = QuickSorter.generateRandomList(100);
 //		for(int x = 0; x < test.length; x++)
 //		{
 //			initialList.add(test[x]);

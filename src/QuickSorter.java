@@ -62,9 +62,13 @@ public class QuickSorter
     		while(true)
     		{
     			while(list.get(i).compareTo(pivot) < 0) {i++;} //Just iterate till found greater element.
-    			while(list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
+    			while(j >= 0 &&list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
     			if( i < j)
+    			{
     				swapElements(list, i, j);
+    				i++;
+    				j--;
+    			}
     			else
     				break;
     		}
@@ -92,9 +96,13 @@ public class QuickSorter
     		while(true)
     		{
     			while(list.get(i).compareTo(pivot) < 0) {i++;} //Just iterate till found greater element.
-    			while(list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
+    			while(j >= 0 && list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
     			if( i < j)
+    			{
     				swapElements(list, i, j);
+    				i++;
+    				j--;
+    			}
     			else
     				break;
     		}
@@ -119,9 +127,13 @@ public class QuickSorter
     		while(true)
     		{
     			while(list.get(i).compareTo(pivot) < 0) {i++;} //Just iterate till found greater element.
-    			while(list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
+    			while(j >= 0 && list.get(j).compareTo(pivot) > 0) {j--;} //Just iterate till found lesser element.
     			if( i < j)
+    			{
     				swapElements(list, i, j);
+    				i++;
+    				j--;
+    			}
     			else
     				break;
     		}
@@ -225,7 +237,7 @@ public class QuickSorter
     	
     	for(int x = 0; x < size; x++)
     	{
-    		list.add(random.nextInt(50 - -50 + 1) + -50);
+    		list.add(random.nextInt());
     	}
     	
 		return list;
