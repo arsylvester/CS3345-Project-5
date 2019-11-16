@@ -1,4 +1,11 @@
-
+/* Name: Andrew Sylvester
+ * Class: CS 3345
+ * Section: 001
+ * Semester: Fall 2019
+ * Project 5 
+ * Class Description: This class QuickSorter is an implementation of an in place quicksort with 4 different pivot options. It also returns the time taken to sort.
+ * A method to create a random array list is also included.
+ */
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,13 +14,18 @@ public class QuickSorter
 {
 	private static final int SMALL_ARRAY_LIMIT = 20;
 
-    /*
-     * This private constructor is optional, but it does help to prevent accidental client instantiation of QuickSorter
-     * via the default constructor.  (defining any constructor prevents the compiler from creating a default constructor)
-     * This particular anti-instantiation technique is exactly what {@link java.util.Collections} does.
+    /**
+     * Constructor
      */
     private QuickSorter() { }
 
+    /**
+     * This method quicksorts the provided ArrayList using the provided pivot strategy. 
+     * @param list The ArrayList to sort.
+     * @param strategy The PivotStrategy for the quicksort to use.
+     * @return The runtime of the quicksort.
+     * @throws NullPointerException
+     */
     public static <E extends Comparable<E>> Duration timedQuickSort(ArrayList<E> list, PivotStrategy strategy) throws NullPointerException
     {
     	if(list == null || strategy == null)
@@ -48,6 +60,12 @@ public class QuickSorter
 		return elapsedTime;
     }
     
+    /**
+     * Private recursive quicksort method that uses the first element of the array as the pivot.
+     * @param list The ArrayList being sorted.
+     * @param left Start of subarray being sorted.
+     * @param right End of subarray being sorted.
+     */
     private static <E extends Comparable<E>> void firstElementQuickSort(ArrayList<E> list, int left, int right)
     {
     	//If subarray is smaller than 20 then use insertion sort.
@@ -81,6 +99,12 @@ public class QuickSorter
     		insertionSort(list, left, right);
     }
     
+    /**
+     * Private recursive quicksort method that uses a random element of the array as the pivot.
+     * @param list The ArrayList being sorted.
+     * @param left Start of subarray being sorted.
+     * @param right End of subarray being sorted.
+     */
     private static <E extends Comparable<E>> void randomElementQuickSort(ArrayList<E> list, int left, int right)
     {
     	//If subarray is smaller than 20 then use insertion sort.
@@ -115,6 +139,12 @@ public class QuickSorter
     		insertionSort(list, left, right);
     }
     
+    /**
+     * Private recursive quicksort method that uses the median of 3 random elements of the array as the pivot.
+     * @param list The ArrayList being sorted.
+     * @param left Start of subarray being sorted.
+     * @param right End of subarray being sorted.
+     */
     private static <E extends Comparable<E>> void randomMedianQuickSort(ArrayList<E> list, int left, int right)
     {
     	//If subarray is smaller than 20 then use insertion sort.
@@ -146,6 +176,13 @@ public class QuickSorter
     		insertionSort(list, left, right);
     }
     
+    /**
+     * Helper method to the randomMedianQuickSort method that gets the median element of 3 random elements in the subarray.
+     * @param list The ArrayList being sorted.
+     * @param left Start of subarray being sorted.
+     * @param right End of subarray being sorted.
+     * @return The pivot.
+     */
     private static <E extends Comparable<E>> E randomMedian(ArrayList<E> list, int left, int right)
     {
     	Random random = new Random();
@@ -164,6 +201,12 @@ public class QuickSorter
         return list.get(right);
     }
     
+    /**
+     * Private recursive quicksort method that uses the median of the subarray as the pivot.
+     * @param list The ArrayList being sorted.
+     * @param left Start of subarray being sorted.
+     * @param right End of subarray being sorted.
+     */
     private static <E extends Comparable<E>> void medianQuickSort(ArrayList<E> list, int left, int right)
     {
     	//If subarray is smaller than 20 then use insertion sort.
@@ -191,6 +234,13 @@ public class QuickSorter
     		insertionSort(list, left, right);
     }
     
+    /**
+     * Helper method to the medianQuickSort method that gets the median element in the subarray.
+     * @param list The ArrayList being sorted.
+     * @param left Start of subarray being sorted.
+     * @param right End of subarray being sorted.
+     * @return The pivot.
+     */
     private static <E extends Comparable<E>> E median(ArrayList<E> list, int left, int right)
     {
     	int center = ( left + right ) / 2;
@@ -206,6 +256,12 @@ public class QuickSorter
         return list.get(right - 1);
     }
     
+    /**
+     * Private method that swaps the elements at index i and j.
+     * @param list ArrayList that elements are being swapped in.
+     * @param i The first index to be swapped.
+     * @param j The second index to be swapped.
+     */
     private static <E extends Comparable<E>> void swapElements(ArrayList<E> list, int i, int j)
     {
     	E temp = list.get(i);
@@ -213,6 +269,12 @@ public class QuickSorter
     	list.set(j, temp);
     }
     
+    /**
+     * Private insertion sort method. Used when a subarray in the quick sort becomes too small (20 or less).
+     * @param list The ArrayList being sorted.
+     * @param left Start of subarray being sorted.
+     * @param right End of subarray being sorted.
+     */
     private static <E extends Comparable<E>> void insertionSort(ArrayList<E> list, int left, int right)
     {
     	for(int x = left + 1; x <= right; x++)
@@ -227,6 +289,12 @@ public class QuickSorter
     	}
     }
 
+    /**
+     * The method instantiates an ArrayList and generates random integers in the arraylist.
+     * @param size The size of the ArrayList/number of elements to randomly generate
+     * @return The randomly generated ArrayList
+     * @throws IllegalArgumentException
+     */
     public static ArrayList<Integer> generateRandomList(int size) throws IllegalArgumentException
     {
     	if(size < 0)
@@ -243,6 +311,9 @@ public class QuickSorter
 		return list;
     }
 
+    /**
+     * Public Enum for each pivot strategy that the quicksort method can use.
+     */
     public static enum PivotStrategy
     {
         FIRST_ELEMENT,
