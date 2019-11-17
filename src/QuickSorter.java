@@ -321,5 +321,21 @@ public class QuickSorter
         MEDIAN_OF_THREE_RANDOM_ELEMENTS,
         MEDIAN_OF_THREE_ELEMENTS
     }
+    
+    /**
+     * This method randomly swaps a elements in an ArrayList by a percent. This is used for testing purposes of an almost sorted array.
+     * @param list ArrayList to randomly swap.
+     * @param percent The percentage to swap around elements by.
+     */
+    public static <E extends Comparable<E>> void randomSwap(ArrayList<E> list, int percent)
+    {
+    	Random random = new Random();
+    	for(int x = 0; x < list.size()/percent; x++)
+    	{
+    		int i = random.nextInt(list.size() - 2);
+        	int j = random.nextInt(list.size() - 2);
+        	swapElements(list, i, j);
+    	}
+    }
 
 }
